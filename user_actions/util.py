@@ -1,5 +1,4 @@
 import tiktoken
-import asyncio
 
 def arrange_url(url):
     return f'# {url["title"]}\n* URL: {url["link"]}\n{url["snippet"]}'
