@@ -1,5 +1,8 @@
 import streamlit as st
 
+def append_session(key, val):
+    st.session_state[key].append(val)
+    
 def set_session(key, val):
     st.session_state[key] = val
 
