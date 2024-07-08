@@ -1,2 +1,5 @@
 curl.txt
 app.py
+.vscode
+.streamlit
+__pycache__

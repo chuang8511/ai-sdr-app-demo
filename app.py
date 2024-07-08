@@ -14,7 +14,7 @@ if get_session("sending_status"):
 
 if is_status("generate_email"):
     if get_session("auth_token") is None:
-        auth_token = st.text_input('Auth Token:', type="password", value=" ")
+        auth_token = st.text_input('Auth Token:', type="password", value=st.secrets["INSTILL_CLOUD_API_TOKEN"])
         set_session("auth_token", auth_token)
 
     receiver_email = st.text_input('Your Client\'s Email:', value="chuang@netprotections.co.jp")
