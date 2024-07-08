@@ -2,11 +2,11 @@ import requests
 import json
 from util import get_session
 
-# TODO: Replace the official URLs
 URL_MAP = {
-    "get-domain-urls": "https://api.instill.tech/v1beta/users/chunhao094/pipelines/get-domain-urls/trigger",
-    "crawler": "https://api.instill.tech/v1beta/users/chunhao094/pipelines/crawler/trigger",
-    "summary": "https://api.instill.tech/v1beta/users/chunhao094/pipelines/summary/trigger",
+    "get-domain-urls": "https://api.instill.tech/v1beta/users/leochen5/pipelines/sdr-get-domain-url/trigger",
+    "crawler": "https://api.instill.tech/v1beta/users/leochen5/pipelines/sdr-crawler-pipeline/trigger",
+    "summary": "https://api.instill.tech/v1beta/users/leochen5/pipelines/sdr-summary-pipeline/trigger",
+    # TODO: Replace the official URLs
     "craft-cold-email-pipeline": "https://api.instill.tech/v1beta/users/chunhao094/pipelines/craft-cold-emial/trigger",
     "send-email": "https://api.instill.tech/v1beta/users/chunhao094/pipelines/send-email/trigger"
 }

@@ -1,7 +1,6 @@
-import json
 from .call_apis import call_api
+from user_actions.util import chunk_info
 
-# ✅ TODO: Replace the data mapping
 def process_get_domain_urls(receiver_email):
     data = {
         "inputs": [
@@ -21,11 +20,8 @@ def process_get_domain_urls(receiver_email):
     # }
     return response
     
-    
-
-# TODO: Replace the data mapping
 def process_crawler(url):
-    
+    print("Processing crawler")
     data = {
         "inputs": [
             {
@@ -34,20 +30,28 @@ def process_crawler(url):
         ]
     }
 
+
     response = call_api("crawler", data)["outputs"][0]
+    return_val = []
+    for result in response["webage_results"]:
+        return_val.append(chunk_info(result["link-text"]))
     
-    # String
-    return response["web_info"]
+    # ["link-text1", "link-text2", "link-text3]
+    print("End crawler")
+    return return_val
 
 
-# TODO: Replace the data mapping
-def process_summary(company_info, product_info, person_info):
+def process_summary(receiver_email, company_search_context, company_web_urls, person_search_context, person_web_urls, product_search_context, product_web_urls):
     data = {
         "inputs": [
             {
-                "company_info": company_info,
-                "person_info": product_info,
-                "product_info": person_info
+                "company_email": receiver_email,
+                "company_search_context": company_search_context,
+                "company_web_urls": company_web_urls,
+                "person_search_context": person_search_context,
+                "person_web_urls": person_web_urls,
+                "product_search_context": product_search_context,
+                "product_web_urls": product_web_urls
             }
         ]
     }
@@ -56,12 +60,11 @@ def process_summary(company_info, product_info, person_info):
     
     # JSON
     # {
-    #   "company": "summary",
-    #   "person": "summary",
-    #   "product": "summary",
-    #   "guideline": "summary"
+    #   "company_summary": "summary",
+    #   "product_summary": "summary",
+    #   "person_summary": "summary",
     # }
-    return response["summary"]
+    return response
 
 # TODO: Replace the data mapping
 def process_craft_cold_email_pipeline(summary_response, sender_name):
