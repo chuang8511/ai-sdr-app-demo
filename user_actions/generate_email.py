@@ -4,9 +4,14 @@ from util import *
 from .util import *
 import asyncio
 import aiohttp
+import random
+import time
 
 def process(receiver_email, sender_name):
-    
+    # mock process
+    time.sleep(3)
+
+    return f"fake subject {random.randint(1, 10)}", f"fake body {random.randint(1, 10)}" 
     urls = process_get_domain_urls(receiver_email)    
     
     company_urls = urls["company_urls"]
@@ -29,13 +34,10 @@ def process(receiver_email, sender_name):
     set_session("company_summary", summary_response["company_summary"])
     set_session("person_summary", summary_response["person_summary"])
     set_session("product_summary", summary_response["product_summary"])
-    
-    return "fake subject", "fake body"
 
     # generated_email = process_craft_cold_email_pipeline(summary_response, sender_name)
     # return generated_email["subject"], generated_email["body"]
-
-
+        
 async def run_all_urls(company_urls, product_urls, person_urls):
     company_task = run_process_crawler_concurrently(company_urls)
     product_task = run_process_crawler_concurrently(product_urls)
